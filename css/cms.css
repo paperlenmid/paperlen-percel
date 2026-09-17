@@ -1,0 +1,324 @@
+/**
+ * cms.css
+ * Styling for the real login form, the testimonial photo upload panel
+ * (the CMS part of the dashboard), and the change-password modal.
+ */
+
+/* ---------- login form ---------- */
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#login-form input {
+  width: 100%;
+  background: var(--bg-panel-2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+#login-form input:focus {
+  outline: none;
+  border-color: var(--violet);
+}
+
+/* ---------- testimonial upload form ---------- */
+.testi-form-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.testi-upload {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border: 1.5px dashed var(--line);
+  border-radius: 12px;
+  background: var(--bg-panel-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+
+.testi-upload:hover {
+  border-color: var(--violet);
+}
+
+.testi-upload input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.testi-upload img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#testi-upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11.5px;
+  text-align: center;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+#testi-upload-placeholder svg {
+  width: 22px;
+  height: 22px;
+}
+
+.testi-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.testi-fields input,
+.testi-fields textarea,
+.testi-fields select {
+  width: 100%;
+  min-width: 0;
+  background: var(--bg-panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.testi-fields input:focus,
+.testi-fields textarea:focus,
+.testi-fields select:focus {
+  outline: none;
+  border-color: var(--violet);
+}
+
+/* ---------- admin testimonial grid (list of uploaded photos) ---------- */
+.testi-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.testi-admin-card {
+  background: var(--bg-panel-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.testi-admin-card img,
+.testi-admin-thumb-stars {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  display: block;
+}
+
+.testi-admin-card img {
+  object-fit: cover;
+}
+
+.testi-admin-thumb-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-panel);
+  color: var(--gold);
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.testi-admin-card-body {
+  padding: 10px;
+}
+
+.testi-admin-card-name {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 6px;
+}
+
+.testi-admin-card-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.testi-admin-card-actions button {
+  flex: 1;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 6px;
+  font-size: 10.5px;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+}
+
+.testi-admin-card-actions button:hover {
+  color: var(--text);
+  border-color: var(--violet);
+}
+
+.testi-admin-card-actions button.danger:hover {
+  color: var(--rose);
+  border-color: var(--rose);
+}
+
+/* ---------- change password modal ---------- */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(5, 7, 14, .72);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+.modal-card h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 19px;
+  margin: 0 0 4px;
+}
+
+.modal-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-card input {
+  width: 100%;
+  min-width: 0;
+  background: var(--bg-panel-2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 11px 13px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+}
+
+.modal-card input:focus {
+  outline: none;
+  border-color: var(--violet);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* ---------- star rating picker (dashboard form) ---------- */
+.star-picker {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star-picker button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--line);
+  cursor: pointer;
+  padding: 2px;
+  transition: color .15s;
+}
+
+.star-picker button.active {
+  color: var(--gold);
+}
+
+.star-picker-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-left: 6px;
+}
+
+/* ---------- homepage stats edit form ---------- */
+.stats-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stats-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.stats-form input {
+  width: 100%;
+  min-width: 0;
+  background: var(--bg-panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.stats-form input:focus {
+  outline: none;
+  border-color: var(--violet);
+}
+
+/* ---------- shared: form error text ---------- */
+.gate-err.visible {
+  display: block;
+}

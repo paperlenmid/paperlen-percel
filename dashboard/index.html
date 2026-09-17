@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Dashboard — Alen Asteris</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets, loaded in cascade order -->
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/cms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <canvas id="bg-stars"></canvas>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.2 6.8H21l-5.6 4.1L17.6 20 12 15.9 6.4 20l2.2-7.1L3 8.8h6.8L12 2z" fill="url(#g1)"/><defs><linearGradient id="g1" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#5EEAD4"/><stop offset="1" stop-color="#7C6FFF"/></linearGradient></defs></svg>
+        <div>ALEN ASTERIS<small>STAFF DASHBOARD</small></div>
+      </div>
+      <div class="tabs">
+        <a class="tab-btn" href="/" style="display:inline-flex;align-items:center;text-decoration:none;">← Trust Page</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="gate" id="gate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      <h2>Dashboard Login</h2>
+      <p>For Alen Asteris staff only. Sign in to manage deals, revenue, staff performance, and testimonials.</p>
+      <div class="gate-err" id="gate-err"></div>
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <input required id="login-username" name="username" placeholder="Username" autocomplete="username">
+        <input required id="login-password" name="password" type="password" placeholder="Password" autocomplete="current-password">
+        <button type="submit" class="btn-primary" style="width:100%" id="login-submit-btn">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="dashboard-content">
+    <div class="wrap">
+      <div class="dash-header">
+        <div class="dash-title">Dashboard — Alen Asteris<span class="section-note mono" id="dash-whoami" style="display:block;margin-top:4px;"></span></div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn-ghost" onclick="openChangePassword()">Change Password</button>
+          <button class="btn-ghost" onclick="handleLogout()">Log Out</button>
+        </div>
+      </div>
+
+      <div class="cards-4" id="kpi-row"></div>
+
+      <div class="dash-grid">
+        <div class="panel">
+          <div class="panel-title">Revenue — Last 7 Completed Deals<span class="section-note mono">IDR</span></div>
+          <div class="chart-bars" id="revenue-chart"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Add New Deal</div>
+          <form class="deal-form" onsubmit="addDeal(event)">
+            <input required id="f-buyer" placeholder="Buyer name" />
+            <input required id="f-seller" placeholder="Seller name" />
+            <input required id="f-item" class="full" placeholder="Item / account being sold" />
+            <input required id="f-value" type="number" min="0" placeholder="Value (IDR)" />
+            <select id="f-staff"></select>
+            <select id="f-status" class="full">
+              <option value="pending">Pending</option>
+              <option value="process">In Progress</option>
+              <option value="completed">Completed</option>
+              <option value="dispute">Dispute</option>
+            </select>
+            <button type="submit" class="btn-add">+ Add Deal</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-bottom:16px;">
+        <div class="panel-title">All Deals <span class="section-note mono" id="admin-deal-count">—</span></div>
+        <div class="table-scroll-hint">← swipe to see more →</div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Parties</th><th>Item</th><th>Value</th><th>Staff</th><th>Status</th><th></th></tr></thead>
+            <tbody id="admin-deals-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-bottom:16px;">
+        <div class="panel-title">Homepage Stats</div>
+        <p class="section-note" style="margin:-8px 0 16px;line-height:1.6;">
+          The big trust numbers shown on the Trust Page hero. Edit them anytime — changes go live immediately.
+        </p>
+        <form class="stats-form" onsubmit="submitStats(event)">
+          <div class="stats-form-grid">
+            <label>Successful transactions<input id="stat-successfulTransactions" type="number" min="0"></label>
+            <label>Satisfaction rate (%)<input id="stat-satisfactionRate" type="number" min="0" max="100"></label>
+            <label>Years trusted<input id="stat-yearsTrusted" type="number" min="0"></label>
+            <label>Midman deals<input id="stat-midmanDeals" type="number" min="0"></label>
+            <label>Boosting completed<input id="stat-boostingCompleted" type="number" min="0"></label>
+            <label>Accounts sold<input id="stat-accountsSold" type="number" min="0"></label>
+            <label>Top-up &amp; social<input id="stat-topupSocial" type="number" min="0"></label>
+          </div>
+          <button type="submit" class="btn-add" id="stats-submit-btn">Save Stats</button>
+          <div class="gate-err" id="stats-form-err"></div>
+        </form>
+      </div>
+
+      <div class="panel" style="margin-bottom:16px;">
+        <div class="panel-title">
+          Testimonials
+          <span class="section-note mono" id="testi-admin-count">—</span>
+        </div>
+        <p class="section-note" style="margin:-8px 0 16px;line-height:1.6;">
+          Add a real testimonial — upload a screenshot, type in a star rating, or both. Rewording someone's actual feedback into the fields below is fine; making up a person or a deal that never happened is not.
+        </p>
+
+        <form id="testi-form" class="testi-form" onsubmit="submitTestimonial(event)">
+          <input type="hidden" id="testi-edit-id" value="">
+          <div class="testi-form-grid">
+            <div class="testi-upload" id="testi-upload-drop">
+              <input type="file" id="testi-image" accept="image/png,image/jpeg,image/webp,image/gif" onchange="previewTestimonialImage(event)">
+              <img id="testi-image-preview" style="display:none;">
+              <div id="testi-upload-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                <span>Click to choose a photo (optional)</span>
+              </div>
+            </div>
+            <div class="testi-fields">
+              <input required id="testi-buyer" placeholder="Buyer name (e.g. kevin_ml)">
+              <div class="star-picker" id="testi-rating-picker" data-value="0">
+                <button type="button" data-star="1" aria-label="1 star">★</button>
+                <button type="button" data-star="2" aria-label="2 stars">★</button>
+                <button type="button" data-star="3" aria-label="3 stars">★</button>
+                <button type="button" data-star="4" aria-label="4 stars">★</button>
+                <button type="button" data-star="5" aria-label="5 stars">★</button>
+                <span class="star-picker-hint">no rating — required if no photo</span>
+              </div>
+              <textarea required id="testi-caption" rows="4" placeholder="Their feedback, in their words (or your honest summary of it)"></textarea>
+              <textarea id="testi-admin-reply" rows="2" placeholder="Optional: your public reply, shown under the review"></textarea>
+              <select id="testi-status">
+                <option value="completed">Completed deal</option>
+                <option value="pending">Pending deal</option>
+              </select>
+              <div style="display:flex;gap:10px;">
+                <button type="submit" class="btn-add" style="margin-top:0;flex:1;" id="testi-submit-btn">+ Add Testimonial</button>
+                <button type="button" class="btn-ghost" id="testi-cancel-btn" style="display:none;" onclick="cancelEditTestimonial()">Cancel</button>
+              </div>
+              <div class="gate-err" id="testi-form-err"></div>
+            </div>
+          </div>
+        </form>
+
+        <div class="testi-admin-grid" id="testi-admin-grid"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Staff Performance</div>
+        <div id="staff-admin-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CHANGE PASSWORD MODAL ============ -->
+  <div id="pw-modal-backdrop" class="modal-backdrop">
+    <div class="modal-card">
+      <h2>Change Password</h2>
+      <p class="section-note" style="margin:-4px 0 18px;">Update the password for this admin account.</p>
+      <form id="pw-form" onsubmit="submitChangePassword(event)">
+        <input required id="pw-current" type="password" placeholder="Current password" autocomplete="current-password">
+        <input required id="pw-new" type="password" placeholder="New password (min 8 characters)" autocomplete="new-password" minlength="8">
+        <div class="gate-err" id="pw-form-err"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn-ghost" onclick="closeChangePassword()">Cancel</button>
+          <button type="submit" class="btn-primary">Update Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts, loaded in dependency order -->
+  <script src="../js/starfield.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

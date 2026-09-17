@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alen Asteris — Midman Trust</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets, loaded in cascade order -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/trust-page.css">
+  <link rel="stylesheet" href="css/procedure-staff.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <canvas id="bg-stars"></canvas>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.2 6.8H21l-5.6 4.1L17.6 20 12 15.9 6.4 20l2.2-7.1L3 8.8h6.8L12 2z" fill="url(#g1)"/><defs><linearGradient id="g1" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#5EEAD4"/><stop offset="1" stop-color="#7C6FFF"/></linearGradient></defs></svg>
+        <div>ALEN ASTERIS<small>MIDMAN &amp; ESCROW SERVICE</small></div>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" id="tab-trust" onclick="showView('trust')">Trust Page</button>
+        <button class="tab-btn" id="tab-prosedur" onclick="showView('prosedur')">Procedure</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ TRUST VIEW ============ -->
+  <div id="trust-view">
+    <section class="hero">
+      <div class="wrap">
+        <div class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 5-3.4 8.5-7 10-3.6-1.5-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          VERIFIED MIDMAN · 0 UNRESOLVED DISPUTES
+        </div>
+        <h1 class="headline">Every transaction becomes a <span class="accent">point of light</span> on our trust map.</h1>
+        <p class="sub">Alen Asteris bridges safe buying &amp; selling of accounts and game items. Every closed deal is logged in the open — not pasted-on testimonials, but a trail you can verify yourself.</p>
+        <div class="cta-row">
+          <button class="btn-primary" onclick="document.getElementById('testi-grid').scrollIntoView({behavior:'smooth'})">See Testimonials</button>
+          <button class="btn-ghost" onclick="showView('prosedur')">How It Works</button>
+        </div>
+        <div class="stats-cards" id="stats-cards"></div>
+      </div>
+    </section>
+
+    <section style="padding:20px 0 70px;">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-title">What They Say</div>
+          <div class="section-note">CLIENT TESTIMONIALS</div>
+        </div>
+        <div class="testi-grid" id="testi-grid"></div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap foot-row">
+        <div class="foot-note">© 2026 ALEN ASTERIS — Deal data &amp; stats update automatically from the staff dashboard.</div>
+        <div class="foot-note">This page is a demo/template, not a real service.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ============ PROSEDUR VIEW ============ -->
+  <div id="prosedur-view">
+    <div class="wrap">
+      <div class="proc-hero">
+        <div class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 5-3.4 8.5-7 10-3.6-1.5-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          OFFICIAL ALEN ASTERIS SOP
+        </div>
+        <h1>Midman Procedure</h1>
+        <p class="sub" style="margin-bottom:0;">The standard flow we follow for every deal, from agreeing on a price to releasing funds. Follow it in order starting from step 1 — don't skip steps, so your transaction gets logged on the Trust Page.</p>
+      </div>
+
+      <div class="proc-steps">
+        <div class="proc-step">
+          <div class="proc-num">01</div>
+          <div>
+            <div class="proc-step-title">Agree to the Deal in Front of the Midman</div>
+            <div class="proc-step-desc">Buyer &amp; seller lay out item details, price, and terms in the official midman group/chat — not private DMs. Anything agreed outside of this is not our responsibility.</div>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">02</div>
+          <div>
+            <div class="proc-step-title">Buyer Transfers Funds to the Midman</div>
+            <div class="proc-step-desc">Funds are sent to the midman's account/e-wallet, <b>not</b> directly to the seller. The midman confirms receipt and issues a confirmation in chat.</div>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">03</div>
+          <div>
+            <div class="proc-step-title">Seller Sends the Item / Account</div>
+            <div class="proc-step-desc">Once funds are confirmed, the seller sends the account/item complete with password change &amp; recovery email as agreed at the start.</div>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">04</div>
+          <div>
+            <div class="proc-step-title">Buyer Checks &amp; Verifies</div>
+            <div class="proc-step-desc">The buyer gets a set window to check the item is complete (usually 10–15 minutes). If anything doesn't match the description, report it in chat before confirming completion.</div>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">05</div>
+          <div>
+            <div class="proc-step-title">Funds Released to the Seller</div>
+            <div class="proc-step-desc">Once the buyer confirms everything's fine, the midman releases the funds to the seller. The deal is marked <b>completed</b> and automatically logged as a new star on the Trust Page.</div>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">06</div>
+          <div>
+            <div class="proc-step-title">If a Dispute Arises</div>
+            <div class="proc-step-desc">As long as the midman still holds the funds, we act as mediator and work out a fair solution for both sides — funds won't be released unilaterally before an agreement is reached.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div class="section-title">Rules</div>
+        <div class="section-note">MANDATORY DURING THE PROCESS</div>
+      </div>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+          <div class="rule-text">Transactions outside the midman's oversight are not allowed (direct DMs, transfers outside the official account, etc).</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+          <div class="rule-text">Items already received &amp; confirmed by the buyer cannot be returned, unless proven not to match the description.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+          <div class="rule-text">Both parties must stay respectful. Spamming, flooding the chat, or intimidating staff/other parties is not allowed.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+          <div class="rule-text">Don't skip any step — deals that don't follow the full procedure can't be guaranteed safe by us.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+          <div class="rule-text">Account data (recovery email, old password) must be handed over in full during transfer — nothing may be withheld.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+          <div class="rule-text">The item-checking window is limited as agreed at the start — passing the deadline without a complaint counts as deal completed.</div>
+        </div>
+      </div>
+
+      <div class="proc-cta">
+        <div>
+          <h3>Ready to start a deal?</h3>
+          <p>Contact our staff to start a transaction, or check completed deal history on the Trust Page first.</p>
+        </div>
+        <div style="display:flex;gap:12px;">
+          <button class="btn-ghost" onclick="showView('trust')">View Trust Page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts, loaded in dependency order -->
+  <script src="js/starfield.js"></script>
+  <script src="js/public.js"></script>
+</body>
+</html>

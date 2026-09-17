@@ -1,0 +1,296 @@
+/**
+ * responsive.css
+ * Breakpoint overrides for small screens, loaded last so it can
+ * override every other stylesheet. Shared by both index.html and
+ * dashboard/index.html — rules for elements that only exist on one
+ * page are harmless no-ops on the other.
+ *
+ * Three breakpoints:
+ *   900px — tablet / narrow desktop: multi-column grids drop a column
+ *   560px — phone: everything stacks to a single/two column layout,
+ *           spacing and type scale down, tap targets grow
+ *   380px — small phone: the last few 2-column grids collapse to 1
+ */
+
+/* ============ 900px — TABLET ============ */
+@media (max-width: 900px) {
+  /* nav */
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+
+  .tabs {
+    width: 100%;
+  }
+
+  .tab-btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* hero stat cards: highlight card full width, everything below in 2 cols */
+  .stats-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-highlight {
+    grid-column: 1 / -1;
+  }
+
+  .stats-grid-2x2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* testimonials */
+  .testi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* procedure page */
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* dashboard */
+  .cards-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+
+  form.deal-form {
+    grid-template-columns: 1fr;
+  }
+
+  .testi-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testi-upload {
+    aspect-ratio: 16 / 9;
+    max-width: 320px;
+  }
+}
+
+/* ============ 560px — PHONE ============ */
+@media (max-width: 560px) {
+  .wrap {
+    padding: 0 18px;
+  }
+
+  /* nav */
+  .brand {
+    font-size: 16px;
+  }
+
+  .brand svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .tab-btn {
+    padding: 9px 10px;
+    font-size: 12.5px;
+  }
+
+  /* hero */
+  .hero {
+    padding: 48px 0 40px;
+  }
+
+  .badge {
+    font-size: 10.5px;
+    padding: 6px 12px;
+  }
+
+  .cta-row {
+    flex-direction: column;
+  }
+
+  .cta-row .btn-primary,
+  .cta-row .btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+
+  .stats-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid-2x2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-highlight,
+  .stat-secondary,
+  .stat-mini {
+    padding: 18px 16px;
+  }
+
+  .stat-highlight .stat-big-num {
+    font-size: 30px;
+  }
+
+  /* section headers */
+  .section-title {
+    font-size: 21px;
+  }
+
+  .section-head {
+    margin-bottom: 20px;
+  }
+
+  /* testimonials — single column, both card types */
+  .testi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testi-photo-card,
+  .review-card {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* procedure page */
+  .proc-hero h1 {
+    font-size: 26px;
+  }
+
+  .proc-step {
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    padding: 18px 16px;
+  }
+
+  .proc-num {
+    font-size: 20px;
+  }
+
+  .proc-cta {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 24px 20px;
+  }
+
+  .proc-cta > div:last-child {
+    justify-content: center;
+  }
+
+  footer .foot-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* ============ dashboard ============ */
+  .gate {
+    margin: 60px auto;
+    padding: 28px 22px;
+  }
+
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .dash-header > div:last-child {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dash-title {
+    font-size: 22px;
+  }
+
+  .cards-4 {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .kpi {
+    padding: 16px 14px;
+  }
+
+  .kpi-num {
+    font-size: 20px;
+  }
+
+  .panel {
+    padding: 18px 16px;
+  }
+
+  /* admin deals table: allow horizontal scroll instead of squeezing */
+  .table-scroll-hint {
+    display: block;
+  }
+
+  table.admin-table {
+    font-size: 12px;
+  }
+
+  table.admin-table th,
+  table.admin-table td {
+    padding: 8px 6px;
+    white-space: nowrap;
+  }
+
+  /* testimonial CMS form */
+  .testi-upload {
+    max-width: 100%;
+  }
+
+  .testi-admin-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* star picker: bigger tap targets on touch screens */
+  .star-picker button {
+    font-size: 26px;
+    padding: 6px;
+  }
+
+  .staff-admin-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* change-password modal */
+  .modal-card {
+    padding: 24px 20px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+}
+
+/* ============ 380px — SMALL PHONE ============ */
+@media (max-width: 380px) {
+  .stats-grid-2x2,
+  .cards-4,
+  .testi-admin-grid,
+  .stats-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-header > div:last-child {
+    grid-template-columns: 1fr;
+  }
+}
